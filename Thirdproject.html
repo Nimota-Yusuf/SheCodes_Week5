@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="style">
+
+    <title>My weather application</title>
+
+    <style>
+        body {
+        background: linear-gradient(
+            109.6deg,
+            rgb(245, 239, 249) 30.1%,
+            rgb(207, 211, 236) 100.2%);
+        margin: 0;
+        padding: 0;
+        }
+
+        header form {
+        margin: 0;
+        padding: 0;
+        }
+        .container {
+        background-color: #f7f7f7;
+        width: 30%;
+        margin: 55px auto;
+        display: block;
+        border: 0 black solid;
+        border-radius: 10px;
+        padding: 30px;
+        }
+
+        .input-form {
+        padding: 20px;
+        width: 70%;
+        border-radius: 5px;
+        border: 0px black solid;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 200;
+        font-weight: 400;
+        background-color: rgb(228, 221, 221);
+        color: black;
+        margin-bottom: 40px;
+        }
+
+        .submit{
+        border: 0 black solid;
+        padding: 20px;
+        border-radius: 5px;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 17px;
+        font-weight: 600;
+        color: white;
+        background-color: rgb(98, 54, 141);
+        margin: 0 2px;
+        margin-bottom: 40px;
+        }
+
+        .submit:hover{
+          transition: all 500ms ease-in-out;
+          color: black;
+        }
+
+        .current-weather {
+        display: flex;
+        justify-content: space-between;
+
+        }
+        .temperature {
+        font-size: 78px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        position: relative;
+        bottom: -20px;
+      
+        
+        }
+        .current-weather h1 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        }
+
+        .text{
+          margin-bottom: 50px;
+          font-family: 'Roboto', sans-serif;
+          font-size: 16px;
+          color: rgb(192, 189, 189);
+          line-height: 23px;
+          letter-spacing: 0.3px;
+        }
+
+        .text strong{
+          color: red;
+          font-weight: bolder;
+        }
+        .temperature-emoji{
+          font-size: 40px;
+          position: relative;
+          bottom: -10px;
+          margin-right: 10px;
+        }
+
+        .temperature-unit{
+          font-size: 30px;
+          font-family: 'Roboto', sans-serif;
+          position: relative;
+          top: -14px;
+        }
+
+        footer p{
+          display: block;
+          margin: 15px 25px;
+          font-family: 'Roboto', sans-serif;
+          font-size: 14px;
+          font-weight: 300;
+          color:  rgb(192, 189, 189);
+        }
+
+        footer p a{
+          color: rgb(98, 54, 141);
+          font-weight: bold;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+
+        footer p a:hover{
+          color: rgb(250, 175, 13);
+          transition: all 500ms ease-in-out;
+        }
+        
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <form>
+          <input
+            type="search"
+            placeholder="Enter a city..."
+            required
+            class="input-form"
+          />
+          <input type="submit" value="Search"  class="submit"/>
+        </form>
+      </header>
+
+      <main>
+        <div class="current-weather">
+          <div class="weather-forecaast">
+            <h1>Paris</h1>
+            <p class="text">
+              <span id="date">Saturday 15:32,</span> moderate rain <br />
+              Humidity: <strong>87%</strong>, Wind: <strong>7.2km/h</strong>
+            </p>
+          </div>
+          <div>
+            <span class="temperature-emoji">☀️</span> 
+            <span class="temperature">14</span>
+            <span class="temperature-unit">°C</span></div>
+          </div> 
+      </main>
+      
+      <footer>
+        <p>
+          This project was coded by
+          <a href="#" target="_blank">Neemah</a> and is
+          <a href="#" target="_blank"> on GitHub</a> and
+          <a href="#" target="_blank">hosted on Netlify</a>
+        </p>
+      </footer>
+    </div>
+
+    <script>
+    function cityOutput(event){
+        event.preventDefault();
+
+        let cityInput = document.querySelector('.input-form')
+        let city= document.querySelector('h1');
+        city.innerHTML = cityInput.value;
+
+      //let currentDate = new Date();
+      //console.log(currentDate);
+      
+      let days = ["Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+      let currentDay = days[new Date().getDay()];
+
+      let currentHour = new Date().getHours();
+      let currentMinute = new Date().getMinutes();
+
+      let todayDate = (`${currentDay} ${currentHour}:${currentMinute},`)
+      //console.log (todayDate)
+
+      let dateOutput= document.querySelector('#date')
+      dateOutput.innerHTML = todayDate
+      }
+      let cityName = document.querySelector('form');
+      cityName.addEventListener ('submit', cityOutput)
+
+
+    </script>
+  </body>
+</html>
